@@ -1,4 +1,4 @@
-package LocadoraDeFilmes.Modelos;
+package LocadoraDeFilmes.Negocios;
 
 public class Multa {
     private int id;

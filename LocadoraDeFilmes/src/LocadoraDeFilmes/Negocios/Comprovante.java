@@ -1,4 +1,6 @@
-package LocadoraDeFilmes.Modelos;
+package LocadoraDeFilmes.Negocios;
+
+import LocadoraDeFilmes.Modelos.SolicitacaoDeAluguel;
 
 public class Comprovante {
     private SolicitacaoDeAluguel locacao;

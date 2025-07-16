@@ -36,13 +36,13 @@ public class TipoDeFilme {
     //Metodos das Classe
 
     //Metodo de Solicitar aluguel de um filme, retirando ele na lista de estoque em seguida e adicionando na lista de alugados
-    public Filme solicitarAluguel() {
+    public Filme solicitarAluguel() throws Exception{
         if (!emEstoque.isEmpty()) {
             Filme filme = emEstoque.remove(0);
             alugados.add(filme);
             return filme;
         }
-        return null;
+        throw new Exception();
     }
 
     //Verificação de ID, se o id estiver no estoque vai retornar o filme e seus atributos

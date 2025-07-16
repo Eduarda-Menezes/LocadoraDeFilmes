@@ -1,4 +1,4 @@
-package LocadoraDeFilmes.Negocios;
+package LocadoraDeFilmes.Repositorios;
 
 import LocadoraDeFilmes.Modelos.TipoDeFilme;
 import LocadoraDeFilmes.Modelos.Filme;
@@ -34,10 +34,16 @@ public class GerenciadorDeEstoque {
         return "Filme não encontrado.";
     }
 
-    public Filme solicitarAluguel(String nomeTipo) {
+    public Filme solicitarAluguel(String nomeTipo){
         TipoDeFilme tipo = getTipo(nomeTipo);
         if (tipo != null) {
-            return tipo.solicitarAluguel();
+            try{
+                return tipo.solicitarAluguel();
+            }
+            catch(Exception e){
+                System.out.println("Não foi possível solicitar aluguel");
+            }
+            
         }
         return null;
     }
