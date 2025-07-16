@@ -56,7 +56,9 @@ public class TipoDeFilme {
         return "Filme não encontrado.";
     }
 
-    public void adicionarFilmeAoEstoque(Filme filme) { emEstoque.add(filme); }
+    public void adicionarFilmeAoEstoque(Filme filme) { 
+        emEstoque.add(filme); 
+    }
 
     //Tira o filme da lisat de alugados para o estoque
     public void retornarFilme(Filme filme) {
