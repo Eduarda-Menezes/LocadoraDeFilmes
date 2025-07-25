@@ -13,6 +13,17 @@ public class ClienteRepositorio {
         clientes.add(cliente);
     }
 
+    public void criarNovoCliente(String nome, String cpf, String telefone,
+                   String email, String endereco, String dataNascimento){
+        
+        Cliente novo = new Cliente(nome, cpf, telefone, email, endereco, dataNascimento);
+        try {
+            adicionar(novo);
+        } catch (Exception e) {
+            System.out.println("cliente já existe");
+        }
+    }
+
     public void remover(int id) throws Exception{
         for (Cliente c : clientes) {
             if (c.getId() == id){

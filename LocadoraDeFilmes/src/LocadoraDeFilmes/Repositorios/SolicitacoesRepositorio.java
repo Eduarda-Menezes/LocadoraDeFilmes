@@ -1,14 +1,23 @@
 package LocadoraDeFilmes.Repositorios;
 
+import LocadoraDeFilmes.Modelos.Cliente;
+import LocadoraDeFilmes.Modelos.Filme;
 import LocadoraDeFilmes.Modelos.Funcionario;
 import LocadoraDeFilmes.Modelos.SolicitacaoDeAluguel;
 import java.util.ArrayList;
 
 public class SolicitacoesRepositorio {
-    private ArrayList<SolicitacaoDeAluguel> solicitacoes = new ArrayList<>();
+    private static ArrayList<SolicitacaoDeAluguel> solicitacoes = new ArrayList<>();
 
-    public void adicionar(SolicitacaoDeAluguel s) {
+    public static void adicionar(SolicitacaoDeAluguel s) {
         solicitacoes.add(s);
+    }
+
+    public static void criarNovaSolicitacao(Cliente cliente, Funcionario funcionario, ArrayList<Filme> filmes, 
+                            String dataLocacao, String dataPrevistaDevolucao){
+        
+        SolicitacaoDeAluguel nova = new SolicitacaoDeAluguel(cliente, funcionario, filmes, dataLocacao, dataPrevistaDevolucao);
+        adicionar(nova);
     }
 
     public SolicitacaoDeAluguel buscarPorId(int id) {

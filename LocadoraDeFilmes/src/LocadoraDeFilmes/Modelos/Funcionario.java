@@ -6,10 +6,11 @@ public class Funcionario {
     private String telefone;
     private String funcao;
     private String cpf;
+    private static int funcionarioIdCounter = 0;
 
     //Construtor
-    public Funcionario(int id, String nome, String telefone, String funcao, String cpf) {
-        this.id = id;
+    public Funcionario(String nome, String telefone, String funcao, String cpf) {
+        this.id = funcionarioIdCounter;
         this.nome = nome;
         this.telefone = telefone;
         this.funcao = funcao;

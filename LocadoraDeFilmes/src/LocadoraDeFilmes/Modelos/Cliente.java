@@ -15,11 +15,12 @@ public class Cliente {
     private String dataNascimento; // formato: "dd/MM/yyyy"
     private ArrayList<SolicitacaoDeAluguel> historicoLocacoes = new ArrayList<>();
     private ArrayList<Integer> historicoAtrasos = new ArrayList<>();
+    private static int clienteIdContador = 0;
 
     //Construtor
-    public Cliente(int id, String nome, String cpf, String telefone,
+    public Cliente(String nome, String cpf, String telefone,
                    String email, String endereco, String dataNascimento) {
-        this.id = id;
+        this.id = clienteIdContador++;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
