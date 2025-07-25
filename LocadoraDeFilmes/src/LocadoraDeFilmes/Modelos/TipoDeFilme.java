@@ -65,6 +65,11 @@ public class TipoDeFilme {
         emEstoque.add(filme); 
     }
 
+    public void criarEAdicionar(){
+        Filme filme = new Filme();
+        adicionarFilmeAoEstoque(filme);
+    }
+
     //Tira o filme da lisat de alugados para o estoque
     public void retornarFilme(Filme filme) {
         if (alugados.remove(filme)) {

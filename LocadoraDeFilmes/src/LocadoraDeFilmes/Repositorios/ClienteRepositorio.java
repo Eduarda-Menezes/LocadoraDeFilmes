@@ -4,16 +4,16 @@ import LocadoraDeFilmes.Modelos.Cliente;
 import java.util.ArrayList;
 
 public class ClienteRepositorio {
-    private ArrayList<Cliente> clientes = new ArrayList<>();
+    private static ArrayList<Cliente> clientes = new ArrayList<>();
 
-    public void adicionar(Cliente cliente) throws Exception{
+    public static void adicionar(Cliente cliente) throws Exception{
         for (Cliente c : clientes) {
             if (c.getCpf() == cliente.getCpf()) throw new Exception();
         }
         clientes.add(cliente);
     }
 
-    public void criarNovoCliente(String nome, String cpf, String telefone,
+    public static void criarNovoCliente(String nome, String cpf, String telefone,
                    String email, String endereco, String dataNascimento){
         
         Cliente novo = new Cliente(nome, cpf, telefone, email, endereco, dataNascimento);
@@ -24,7 +24,7 @@ public class ClienteRepositorio {
         }
     }
 
-    public void remover(int id) throws Exception{
+    public static void remover(int id) throws Exception{
         for (Cliente c : clientes) {
             if (c.getId() == id){
                 clientes.remove(c);
@@ -34,21 +34,21 @@ public class ClienteRepositorio {
         throw new Exception();
     }
 
-    public Cliente buscarPorId(int id) throws Exception{
+    public static Cliente buscarPorId(int id) throws Exception{
         for (Cliente c : clientes) {
             if (c.getId() == id) return c;
         }
         throw new Exception();
     }
 
-    public Cliente buscarPorCpf(String cpf) throws Exception{
+    public static Cliente buscarPorCpf(String cpf) throws Exception{
         for (Cliente c : clientes) {
             if (c.getCpf().equals(cpf)) return c;
         }
         throw new Exception();
     }
 
-    public ArrayList<Cliente> listarTodos() {
+    public static ArrayList<Cliente> listarTodos() {
         return clientes;
     }
 }
