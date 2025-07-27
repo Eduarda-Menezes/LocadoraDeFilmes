@@ -2,9 +2,6 @@ package LocadoraDeFilmes.Modelos;
 
 import java.util.ArrayList;
 
-import LocadoraDeFilmes.Negocios.Comprovante;
-import LocadoraDeFilmes.Negocios.Multa;
-
 public class SolicitacaoDeAluguel {
     private int id;
     private Cliente cliente;
@@ -17,12 +14,11 @@ public class SolicitacaoDeAluguel {
     private Multa multa;
     private String justificativaCancelamento;
     private String formaDePagamento;
-    private static int idContador = 0;
 
     //Construtor
     public SolicitacaoDeAluguel(int id, Cliente cliente, Funcionario funcionario, ArrayList<Filme> filmes,
                                 String dataLocacao, String dataPrevistaDevolucao) {
-        this.id = idContador++;
+        this.id = id;
         this.cliente = cliente;
         this.funcionario = funcionario;
         this.filmes = filmes;

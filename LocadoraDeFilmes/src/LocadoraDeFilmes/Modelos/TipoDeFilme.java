@@ -2,8 +2,6 @@ package LocadoraDeFilmes.Modelos;
 
 import java.util.ArrayList;
 
-import LocadoraDeFilmes.Repositorios.SolicitacoesRepositorio;
-
 
 // Classe dos tipo de Filmes
 public class TipoDeFilme {
@@ -38,16 +36,13 @@ public class TipoDeFilme {
     //Metodos das Classe
 
     //Metodo de Solicitar aluguel de um filme, retirando ele na lista de estoque em seguida e adicionando na lista de alugados
-    public Filme solicitarAluguel(Cliente cliente, Funcionario funcionario) throws Exception{
+    public Filme solicitarAluguel() {
         if (!emEstoque.isEmpty()) {
-            ArrayList<Filme> listaFilmes = new ArrayList<>();
             Filme filme = emEstoque.remove(0);
-            listaFilmes.add(filme);
-            SolicitacoesRepositorio.criarNovaSolicitacao(cliente, funcionario, listaFilmes, "01/01/2000", "03/01/2000");
             alugados.add(filme);
             return filme;
         }
-        throw new Exception();
+        return null;
     }
 
     //Verificação de ID, se o id estiver no estoque vai retornar o filme e seus atributos
@@ -61,14 +56,7 @@ public class TipoDeFilme {
         return "Filme não encontrado.";
     }
 
-    public void adicionarFilmeAoEstoque(Filme filme) { 
-        emEstoque.add(filme); 
-    }
-
-    public void criarEAdicionar(){
-        Filme filme = new Filme();
-        adicionarFilmeAoEstoque(filme);
-    }
+    public void adicionarFilmeAoEstoque(Filme filme) { emEstoque.add(filme); }
 
     //Tira o filme da lisat de alugados para o estoque
     public void retornarFilme(Filme filme) {

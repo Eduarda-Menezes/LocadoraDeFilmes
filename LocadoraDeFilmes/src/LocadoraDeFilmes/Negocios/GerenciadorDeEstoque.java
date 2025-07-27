@@ -1,10 +1,7 @@
-package LocadoraDeFilmes.Repositorios;
+package LocadoraDeFilmes.Negocios;
 
 import LocadoraDeFilmes.Modelos.TipoDeFilme;
-import LocadoraDeFilmes.Modelos.Cliente;
 import LocadoraDeFilmes.Modelos.Filme;
-import LocadoraDeFilmes.Modelos.Funcionario;
-
 import java.util.ArrayList;
 
 public class GerenciadorDeEstoque {
@@ -12,11 +9,6 @@ public class GerenciadorDeEstoque {
 
     public void addTipo(TipoDeFilme tipo) {
         estoqueDeTipos.add(tipo);
-    }
-
-    public void criarNovoTipo(String nome, int duracao, String genero){
-        TipoDeFilme tipo = new TipoDeFilme(nome, duracao, genero);
-        addTipo(tipo);
     }
 
     public ArrayList<TipoDeFilme> getEstoque() {
@@ -42,16 +34,10 @@ public class GerenciadorDeEstoque {
         return "Filme não encontrado.";
     }
 
-    public Filme solicitarAluguel(String nomeTipo, Cliente cliente, Funcionario funcionario){
+    public Filme solicitarAluguel(String nomeTipo) {
         TipoDeFilme tipo = getTipo(nomeTipo);
         if (tipo != null) {
-            try{
-                return tipo.solicitarAluguel(cliente, funcionario);
-            }
-            catch(Exception e){
-                System.out.println("Não foi possível solicitar aluguel");
-            }
-            
+            return tipo.solicitarAluguel();
         }
         return null;
     }
