@@ -1,23 +1,19 @@
 package LocadoraDeFilmes.Negocios;
 
-public class Multa {
-    private int id;
+public class Multa extends Documento{
     private int diasAtraso;
     private float valorPorDia;
     private float valorTotal;
 
     //Construtor
-    public Multa(int id, int diasAtraso, float valorPorDia) {
-        this.id = id;
+    public Multa(int diasAtraso, float valorPorDia, String dataEmissao) {
+        super(dataEmissao);
         this.diasAtraso = diasAtraso;
         this.valorPorDia = valorPorDia;
         this.valorTotal = diasAtraso * valorPorDia;
     }
 
     //Getters e Setters
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id; }
 
     public int getDiasAtraso() { return diasAtraso; }
 

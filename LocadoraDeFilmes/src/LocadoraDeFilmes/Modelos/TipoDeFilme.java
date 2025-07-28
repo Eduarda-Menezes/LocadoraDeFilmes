@@ -7,7 +7,7 @@ import LocadoraDeFilmes.Repositorios.SolicitacoesRepositorio;
 
 // Classe dos tipo de Filmes
 public class TipoDeFilme {
-    private String nome;
+    private static String nome;
     private int duracao;
     private String genero;
     private ArrayList<Filme> emEstoque = new ArrayList<>();
@@ -21,7 +21,7 @@ public class TipoDeFilme {
     }
 
     //Getters e Setters
-    public String getNome() { return nome; }
+    public static String getNome() { return nome; }
 
     public void setNome(String nome) { this.nome = nome; }
 
@@ -75,5 +75,10 @@ public class TipoDeFilme {
         if (alugados.remove(filme)) {
             emEstoque.add(filme);
         }
+    }
+
+    //Verifica se tem o filme em estoque
+    public ArrayList<Filme> verificarFilmesEmEstoque() {
+        return emEstoque;
     }
 }

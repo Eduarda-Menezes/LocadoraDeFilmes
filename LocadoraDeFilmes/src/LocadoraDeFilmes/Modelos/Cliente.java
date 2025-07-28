@@ -5,7 +5,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Cliente {
+public class Cliente implements Pessoa{
     private int id;
     private String nome;
     private String cpf;

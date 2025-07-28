@@ -1,6 +1,6 @@
 package LocadoraDeFilmes.Modelos;
 
-public class Funcionario {
+public class Funcionario implements Pessoa{
     private String nome;
     private int id;
     private String telefone;
@@ -35,4 +35,10 @@ public class Funcionario {
     public void setFuncao(String funcao) { this.funcao = funcao; }
 
     public String getCpf(){ return cpf; }
+
+    @Override
+    public void setCpf(String cpf) { this.cpf = cpf; }
+
+    @Override
+    public boolean validarCPF() { return cpf != null && cpf.length() == 11; }
 }

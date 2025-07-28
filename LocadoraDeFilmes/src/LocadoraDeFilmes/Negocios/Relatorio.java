@@ -9,35 +9,25 @@ import LocadoraDeFilmes.Modelos.Filme;
 import LocadoraDeFilmes.Modelos.Funcionario;
 import LocadoraDeFilmes.Modelos.SolicitacaoDeAluguel;
 
-public class Relatorio {
-    private int id;
+public class Relatorio extends Documento{
     private String tipo;
-    private String dataGeracao;
     private String periodo;
     private Object dados; // Pode ser String ou ArrayList
     private Funcionario geradoPor;
 
     //Construtor
-    public Relatorio(int id, String tipo, String periodo, Funcionario geradoPor) {
-        this.id = id;
+    public Relatorio(String tipo, String periodo, Funcionario geradoPor, String dataEmissao) {
+        super(java.time.LocalDate.now().toString());
         this.tipo = tipo;
         this.periodo = periodo;
-        this.dataGeracao = java.time.LocalDate.now().toString();
         this.geradoPor = geradoPor;
     }
 
     //Getters e Setters
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id; }
 
     public String getTipo() { return tipo; }
 
     public void setTipo(String tipo) { this.tipo = tipo; }
-
-    public String getDataGeracao() { return dataGeracao; }
-
-    public void setDataGeracao(String dataGeracao) { this.dataGeracao = dataGeracao; }
 
     public String getPeriodo() { return periodo; }
 

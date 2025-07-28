@@ -1,7 +1,7 @@
 package LocadoraDeFilmes.Modelos;
 
 import java.util.ArrayList;
-
+import LocadoraDeFilmes.Modelos.SolicitacaoDeAluguel;
 import LocadoraDeFilmes.Negocios.Comprovante;
 import LocadoraDeFilmes.Negocios.Multa;
 
@@ -20,7 +20,7 @@ public class SolicitacaoDeAluguel {
     private static int idContador = 0;
 
     //Construtor
-    public SolicitacaoDeAluguel(int id, Cliente cliente, Funcionario funcionario, ArrayList<Filme> filmes,
+    public SolicitacaoDeAluguel(Cliente cliente, Funcionario funcionario, ArrayList<Filme> filmes,
                                 String dataLocacao, String dataPrevistaDevolucao) {
         this.id = idContador++;
         this.cliente = cliente;
