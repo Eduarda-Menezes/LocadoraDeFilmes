@@ -1,7 +1,7 @@
 package LocadoraDeFilmes.Modelos;
 
 import java.util.ArrayList;
-
+import LocadoraDeFilmes.Modelos.SolicitacaoDeAluguel;
 import LocadoraDeFilmes.Negocios.Comprovante;
 import LocadoraDeFilmes.Negocios.Multa;
 

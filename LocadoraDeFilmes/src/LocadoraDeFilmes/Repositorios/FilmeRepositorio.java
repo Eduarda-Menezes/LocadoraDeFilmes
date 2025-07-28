@@ -4,7 +4,7 @@ import LocadoraDeFilmes.Modelos.Filme;
 import java.util.ArrayList;
 
 public class FilmeRepositorio {
-    private ArrayList<Filme> filmes = new ArrayList<>();
+    private static ArrayList<Filme> filmes = new ArrayList<>();
 
     public void adicionar(Filme filme) {
         filmes.add(filme);
@@ -14,7 +14,7 @@ public class FilmeRepositorio {
         filmes.removeIf(f -> f.getId() == id);
     }
 
-    public Filme buscarPorId(int id) {
+    public static Filme buscarPorId(int id) {
         for (Filme f : filmes) {
             if (f.getId() == id) return f;
         }

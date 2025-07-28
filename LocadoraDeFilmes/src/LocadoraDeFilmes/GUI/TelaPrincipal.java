@@ -22,9 +22,14 @@ public class TelaPrincipal extends JFrame {
         btnFuncionarios.setBounds(130, 130, 120, 30);
         btnFuncionarios.addActionListener(e -> new TelaFuncionarios());
 
+        JButton btnLocacao = new JButton("Locação");
+        btnLocacao.setBounds(130, 180, 120, 30);
+        btnLocacao.addActionListener(e -> new TelaLocacao());
+
         add(btnClientes);
         add(btnFilmes);
         add(btnFuncionarios);
+        add(btnLocacao);
 
         setLocationRelativeTo(null);
         setVisible(true);

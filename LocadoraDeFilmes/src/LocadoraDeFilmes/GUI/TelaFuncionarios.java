@@ -1,71 +1,147 @@
 package LocadoraDeFilmes.GUI;
+import LocadoraDeFilmes.Modelos.Funcionario;
+import LocadoraDeFilmes.Repositorios.FuncionariosRepositorio;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-public class TelaFuncionarios extends JFrame{
 
-    JTable tabela;
-    DefaultTableModel modelo;
+public class TelaFuncionarios extends JFrame {
+
+    // Campos do formulário
+    private JTextField campoNome = new JTextField(20);
+    private JTextField campoCpf = new JTextField(20);
+    private JTextField campoTelefone = new JTextField(20);
+    private JTextField campoFuncao = new JTextField(20);
+
+    // Área de exibição
+    private JTextArea areaTexto = new JTextArea(10, 50);
 
     public TelaFuncionarios() {
-        setTitle("Gerenciar Funcionários");
-        setSize(700, 400);
-        setLayout(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        super("Gerenciamento de Funcionários");
+        setLayout(new BorderLayout());
 
-        modelo = new DefaultTableModel(new String[]{
-                "ID", "Nome", "Telefone", "Função"
-        }, 0);
+        // Painel de formulário
+        JPanel painelFormulario = new JPanel(new GridLayout(5, 2));
+        painelFormulario.add(new JLabel("Nome:"));
+        painelFormulario.add(campoNome);
+        painelFormulario.add(new JLabel("CPF:"));
+        painelFormulario.add(campoCpf);
+        painelFormulario.add(new JLabel("Telefone:"));
+        painelFormulario.add(campoTelefone);
+        painelFormulario.add(new JLabel("Função:"));
+        painelFormulario.add(campoFuncao);
 
-        tabela = new JTable(modelo);
-        JScrollPane scroll = new JScrollPane(tabela);
-        scroll.setBounds(20, 20, 640, 200);
-        add(scroll);
+        // Painel de botões
+        JButton btnCadastrar = new JButton("Cadastrar");
+        JButton btnListar = new JButton("Listar Todos");
+        JButton btnBuscar = new JButton("Buscar por CPF");
+        JButton btnRemover = new JButton("Remover por ID");
 
-        JButton btnAdicionar = new JButton("Adicionar");
-        btnAdicionar.setBounds(20, 240, 120, 30);
-        btnAdicionar.addActionListener(e -> {
-            new FormularioFuncionario(this, null, dados -> modelo.addRow(dados));
-        });
+        JPanel painelBotoes = new JPanel();
+        painelBotoes.add(btnCadastrar);
+        painelBotoes.add(btnBuscar);
+        painelBotoes.add(btnListar);
+        painelBotoes.add(btnRemover);
 
-        JButton btnAlterar = new JButton("Alterar");
-        btnAlterar.setBounds(160, 240, 120, 30);
-        btnAlterar.addActionListener(e -> {
-            int linha = tabela.getSelectedRow();
-            if (linha != -1) {
-                String[] dadosOriginais = new String[4];
-                for (int i = 0; i < 4; i++) {
-                    dadosOriginais[i] = (String) modelo.getValueAt(linha, i);
-                }
+        // Área de texto com scroll
+        areaTexto.setEditable(false);
+        JScrollPane scroll = new JScrollPane(areaTexto);
 
-                new FormularioFuncionario(this, dadosOriginais, dadosAtualizados -> {
-                    for (int i = 0; i < 4; i++) {
-                        modelo.setValueAt(dadosAtualizados[i], linha, i);
-                    }
-                });
-            } else {
-                JOptionPane.showMessageDialog(this, "Selecione um funcionário para alterar.");
-            }
-        });
+        // Adiciona componentes ao JFrame
+        add(painelFormulario, BorderLayout.NORTH);
+        add(painelBotoes, BorderLayout.CENTER);
+        add(scroll, BorderLayout.SOUTH);
 
-        JButton btnDeletar = new JButton("Deletar");
-        btnDeletar.setBounds(300, 240, 120, 30);
-        btnDeletar.addActionListener(e -> {
-            int linha = tabela.getSelectedRow();
-            if (linha != -1) modelo.removeRow(linha);
-        });
+        // Ações dos botões
+        btnCadastrar.addActionListener(e -> cadastrarFuncionario());
+        btnListar.addActionListener(e -> listarFuncionarios());
+        btnBuscar.addActionListener(e -> buscarPorCpf());
+        btnRemover.addActionListener(e -> removerPorId());
 
-        JButton btnBuscar = new JButton("Buscar");
-        btnBuscar.setBounds(440, 240, 120, 30);
-
-        add(btnAdicionar);
-        add(btnAlterar);
-        add(btnDeletar);
-        add(btnBuscar);
-        add(scroll);
-
-        setLocationRelativeTo(null);
+        // Configurações da janela
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setLocationRelativeTo(null); // Centraliza na tela
         setVisible(true);
+    }
+
+    private void cadastrarFuncionario() {
+        try {
+            FuncionariosRepositorio.criarEContratar(
+                    campoNome.getText(),
+                    campoTelefone.getText(),
+                    campoFuncao.getText(),
+                    campoCpf.getText()
+            );
+            JOptionPane.showMessageDialog(this, "Funcionário cadastrado com sucesso!");
+            limparCampos();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro: funcionário com este CPF já existe.");
+        }
+    }
+
+    private void listarFuncionarios() {
+        ArrayList<Funcionario> lista = FuncionariosRepositorio.listarTodos();
+        if (lista.isEmpty()) {
+            areaTexto.setText("Nenhum funcionário cadastrado.");
+        } else {
+            StringBuilder sb = new StringBuilder("Lista de Funcionários:\n");
+            for (Funcionario f : lista) {
+                sb.append("ID: ").append(f.getId())
+                        .append(" | Nome: ").append(f.getNome())
+                        .append(" | CPF: ").append(f.getCpf())
+                        .append(" | Telefone: ").append(f.getTelefone())
+                        .append(" | Função: ").append(f.getFuncao())
+                        .append("\n");
+            }
+            areaTexto.setText(sb.toString());
+        }
+    }
+
+    private void buscarPorCpf() {
+        String cpf = JOptionPane.showInputDialog(this, "Digite o CPF:");
+        if (cpf == null || cpf.isBlank()) return;
+
+        try {
+            Funcionario f = FuncionariosRepositorio.buscarPorCpf(cpf);
+            areaTexto.setText(
+                    "Funcionário encontrado:\n" +
+                            "ID: " + f.getId() + "\n" +
+                            "Nome: " + f.getNome() + "\n" +
+                            "Telefone: " + f.getTelefone() + "\n" +
+                            "Função: " + f.getFuncao()
+            );
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Funcionário não encontrado.");
+        }
+    }
+
+    private void removerPorId() {
+        String input = JOptionPane.showInputDialog(this, "Digite o ID do funcionário:");
+        if (input == null || input.isBlank()) return;
+
+        try {
+            int id = Integer.parseInt(input);
+            FuncionariosRepositorio.demitir(id);
+            JOptionPane.showMessageDialog(this, "Funcionário removido com sucesso.");
+        } catch (NumberFormatException nfe) {
+            JOptionPane.showMessageDialog(this, "ID inválido.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Funcionário com esse ID não encontrado.");
+        }
+    }
+
+    private void limparCampos() {
+        campoNome.setText("");
+        campoCpf.setText("");
+        campoTelefone.setText("");
+        campoFuncao.setText("");
+    }
+
+    public static void main(String[] args) {
+        new TelaFuncionarios();
     }
 }

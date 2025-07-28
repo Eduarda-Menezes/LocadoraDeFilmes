@@ -7,15 +7,15 @@ import LocadoraDeFilmes.Modelos.SolicitacaoDeAluguel;
 import java.util.ArrayList;
 
 public class SolicitacoesRepositorio {
-    private static ArrayList<SolicitacaoDeAluguel> solicitacoes = new ArrayList<>();
+    public static ArrayList<SolicitacaoDeAluguel> solicitacoes = new ArrayList<>();
 
     public static void adicionar(SolicitacaoDeAluguel s) {
         solicitacoes.add(s);
     }
 
-    public static void criarNovaSolicitacao(Cliente cliente, Funcionario funcionario, ArrayList<Filme> filmes, 
+    public static void criarNovaSolicitacao(Cliente cliente, Funcionario funcionario, ArrayList<Filme> filmes,
                             String dataLocacao, String dataPrevistaDevolucao){
-        
+
         SolicitacaoDeAluguel nova = new SolicitacaoDeAluguel(cliente, funcionario, filmes, dataLocacao, dataPrevistaDevolucao);
         adicionar(nova);
     }
@@ -37,7 +37,7 @@ public class SolicitacoesRepositorio {
         return resultado;
     }
 
-    public ArrayList<SolicitacaoDeAluguel> listarTodos() {
+    public static ArrayList<SolicitacaoDeAluguel> listarTodos() {
         return solicitacoes;
     }
 }

@@ -16,7 +16,6 @@ Sistema de gerenciamento completo para locadoras de filmes, com funcionalidades 
 ### 2. Cadastro de Filmes
 - Registra título, gênero, ano de lançamento, classificação indicativa e quantidade em estoque.
 - Permite consulta, edição e exclusão.
-- Bloqueio de locações com base na classificação etária do filme.
 
 ### 3. Cadastro de Funcionários
 - Armazena nome, CPF, cargo, tipo de contrato e salário.
@@ -28,15 +27,12 @@ Sistema de gerenciamento completo para locadoras de filmes, com funcionalidades 
 - Registra cliente, filmes alugados, data de locação e data prevista de devolução.
 - Realiza validações automáticas:
   - Verificação de estoque.
-  - Restrições de faixa etária.
-  - Limite de quantidade de filmes por locação.
 - Geração de comprovante digital com todos os dados da locação.
 
 ### 5. Devolução de Filmes
 - Atualiza automaticamente o estoque.
 - Calcula multa por atraso com base nos dias em atraso.
-- Registra atraso no histórico do cliente.
-- Envia notificação por e-mail em caso de devolução em atraso.
+- Envia notificação por e-mail da devolução em atraso.
 
 ### 6. Cancelamento de Locações
 - Permitido apenas para locações ativas sem retirada de filmes.
@@ -54,24 +50,14 @@ Sistema de gerenciamento completo para locadoras de filmes, com funcionalidades 
 
 ## 📊 Relatórios
 
-- **Filmes Mais Alugados**: identifica os títulos com maior saída.
-- **Clientes Mais Ativos**: mostra os que mais alugam filmes.
-- **Locações por Cliente**: exibe todas as locações feitas por um cliente.
-- **Locações Pendentes**: lista locações em andamento ou em atraso, com nome do cliente, filmes e datas.
-- **Clientes por Faixa Etária**: separa os cadastros por grupo etário.
-- **Melhor Mês**: aponta o mês com maior número de locações finalizadas.
-
+- **Locações comoleta**: identifica todos os dados da locação 
 ---
 
 ## 🔒 Regras e Validações
 
 - Validação de CPF no cadastro de clientes e funcionários.
 - Validação do endereço informado no cadastro.
-- Restrições de locação por idade com base na classificação indicativa dos filmes.
-- Verificação de estoque e cancelamento automático caso não haja unidades disponíveis.
-- Justificativa obrigatória para cancelamentos de locação.
-- Bloqueio automático de clientes com histórico negativo de atrasos.
-
+  
 ---
 
 ## 📄 Comprovante de Locação
@@ -82,19 +68,16 @@ Ao final do processo de locação, o sistema gera um comprovante digital contend
 - Data da locação.
 - Data prevista de devolução.
 - Valor total estimado.
-- Opção de salvar ou imprimir o documento.
 
 ---
 
-## 🧠 Análise de Comportamento do Cliente
-
-- Histórico de devoluções.
-- Identificação de clientes com atrasos frequentes.
-- Classificação automática de comportamento (pontual ou inadimplente).
-- Restrição de novas locações para clientes inadimplentes.
-
----
-
+## 🖥 Interface Gráfica 
+- Tela de principal
+- Tela de Cliente
+- Tela de Funcionários
+- Tela de Filmes
+- Tela de Locação
+  
 Este sistema foi projetado para atender com eficiência as necessidades de uma locadora de filmes moderna, garantindo controle sobre os processos de locação, clientes, estoque e análise de desempenho.
 
 
