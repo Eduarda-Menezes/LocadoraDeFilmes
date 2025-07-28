@@ -1,4 +1,3 @@
-
 package LocadoraDeFilmes.Modelos;
 
 public class Filme {
@@ -6,8 +5,8 @@ public class Filme {
     private static int filmeId = 0;
 
     public Filme() {
-        this.id = filmeId++;
-    }
+        id = filmeId++;
+    } // Construtor vazio
 
     public int getId() {
         return id;

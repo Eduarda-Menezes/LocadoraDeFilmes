@@ -15,12 +15,12 @@ public class Cliente {
     private String dataNascimento; // formato: "dd/MM/yyyy"
     private ArrayList<SolicitacaoDeAluguel> historicoLocacoes = new ArrayList<>();
     private ArrayList<Integer> historicoAtrasos = new ArrayList<>();
-    private ArrayList<Multa> multas = new ArrayList<>();
+    private static int clienteIdContador = 0;
 
     //Construtor
-    public Cliente(int id, String nome, String cpf, String telefone,
+    public Cliente(String nome, String cpf, String telefone,
                    String email, String endereco, String dataNascimento) {
-        this.id = id;
+        this.id = clienteIdContador++;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -96,21 +96,5 @@ public class Cliente {
     public void adicionarLocacao(SolicitacaoDeAluguel locacao) { historicoLocacoes.add(locacao); }
 
     public void registrarAtraso(int dias) { historicoAtrasos.add(dias); }
-
-    public void adicionarMulta(Multa multa) {
-        multas.add(multa);
-    }
-
-    public ArrayList<Multa> getMultas() {
-        return multas;
-    }
-
-    public float calcularTotalMultas() {
-        float total = 0;
-        for (Multa multa : multas) {
-            total += multa.getValorTotal();
-        }
-        return total;
-    }
 
 }

@@ -1,8 +1,13 @@
-package LocadoraDeFilmes.Modelos;
+package LocadoraDeFilmes.Negocios;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import LocadoraDeFilmes.Modelos.Cliente;
+import LocadoraDeFilmes.Modelos.Filme;
+import LocadoraDeFilmes.Modelos.Funcionario;
+import LocadoraDeFilmes.Modelos.SolicitacaoDeAluguel;
 
 public class Relatorio {
     private int id;
