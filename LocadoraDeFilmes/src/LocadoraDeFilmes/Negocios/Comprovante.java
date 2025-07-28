@@ -2,12 +2,13 @@ package LocadoraDeFilmes.Negocios;
 
 import LocadoraDeFilmes.Modelos.SolicitacaoDeAluguel;
 
-public class Comprovante {
+public class Comprovante extends Documento {
     private SolicitacaoDeAluguel locacao;
     private String dataEmissao;
 
     //Construtor
-    public Comprovante(SolicitacaoDeAluguel locacao) {
+    public Comprovante(SolicitacaoDeAluguel locacao, String dataEmissao) {
+        super(dataEmissao);
         this.locacao = locacao;
         this.dataEmissao = java.time.LocalDate.now().toString();
     }
@@ -22,10 +23,9 @@ public class Comprovante {
     public void setDataEmissao(String dataEmissao) { this.dataEmissao = dataEmissao; }
 
     //Metodos
-    public boolean gerarPDF() {
+    public void gerarPDF() {
         // Simulação apenas
         System.out.println("Comprovante gerado em PDF para a locação " + locacao.verificarStatus());
-        return true;
     }
 
     public boolean enviarEmail() {
