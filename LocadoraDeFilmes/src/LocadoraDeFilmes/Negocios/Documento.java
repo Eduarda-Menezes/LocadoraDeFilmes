@@ -2,7 +2,7 @@ package LocadoraDeFilmes.Negocios;
 
 public class Documento {
     private int id;
-    private String dataEmissao;
+    protected String dataEmissao;
     private static int documentId = 0;
 
     public Documento(String dataEmissao){
